@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.css">
+    <title>Storage in browser</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Storage in browser</h1>
+
+      <form id="form">
+        <div class="form_inner">
+
+          <label for="image">loading image:</label>
+          <input type="file" id="image" name="image">
+
+          <img src="prw.jpg" alt="preview" class="preview" />
+        </div>
+
+        <label for="textarea">Multi-line field:</label>
+        <textarea id="textarea" rows="4" cols="50"></textarea>
+
+        <label for="readonly">The field is only for reading:</label>
+        <input type="text" id="readonly" readonly>
+      </form>
+
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
