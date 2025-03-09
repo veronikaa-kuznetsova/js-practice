@@ -1,18 +1,39 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
+import { Entry } from './types';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
 
+worker.postMessage('https://raw.githubusercontent.com/json-iterator/test-data/refs/heads/master/large-file.json');
+
+worker.onmessage = (event: MessageEvent<Entry[] | { error: string }>) => {
+    const data = event.data;
+    const result = document.getElementById('data');
+
+    if (!result) return;
+
+    result.innerHTML = '';
+
+    if ('error' in data) {
+        console.log('error', data.error)
+        return;
+    }
+
+    data.forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = `Name: ${item.name || 'Not Available'}, Email: ${item.email || 'Not Available'}`;
+        result.appendChild(li);
+    });
+};
+
+const spinnerJS = document.querySelector('.spinner-js');
+if (spinnerJS) {
+    const spinner = spinnerJS as HTMLElement;
+    let angle = 0;
+
+    function animate() {
+        angle = (angle + 1) % 360;
+        spinner.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+}
