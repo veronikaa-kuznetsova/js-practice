@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typical solutions</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="form-container">
+        <h2>Регистрация</h2>
+        <form action="#" method="post" enctype="multipart/form-data">
+          <label for="name">Имя</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Почта</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="age">Возраст</label>
+          <input type="number" id="age" name="age" min="18" required />
+
+          <label for="profession">Профессия</label>
+          <input type="text" id="profession" name="profession" required />
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="agree" name="agree" />
+            <label for="agree">Согласен работать за еду</label>
+          </div>
+
+          <label for="photo">Фото</label>
+          <input type="file" id="photo" name="photo" accept="image/*" required />
+
+          <button type="submit">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
