@@ -1,0 +1,99 @@
+$primary-color: #007aff;
+$text-color: #1d1d1f;
+$border-radius: 12px;
+$input-border: #ddd;
+$background: #f5f5f7;
+
+.wrapper {
+  background-color: $background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: $border-radius;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+
+  h2 {
+    text-align: center;
+    color: $text-color;
+    margin-bottom: 24px;
+    font-weight: 600;
+    font-size: 24px;
+  }
+}
+
+.form > label {
+  margin-bottom: 8px;
+}
+
+label {
+  display: block;
+  color: $text-color;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="file"],
+select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid $input-border;
+  border-radius: $border-radius;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+  font-size: 15px;
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+}
+
+input[type="file"],
+select {
+  cursor: pointer;
+}
+
+select {
+  padding-right: 24px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+}
+
+button {
+  width: 100%;
+  background-color: $primary-color;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: $border-radius;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #005edc;
+  }
+}
