@@ -1,16 +1,26 @@
-export const parseStruct = ( data: unknown ) => {
-  if (typeof data === 'object' && data !== null) {
-    return Object.keys(data).reduce((accumulator, key) => {
-      if (key === 'text') {
-        accumulator.push(data[key])
-      } else {
-        accumulator.push(...parseStruct(data[key]))
-      }
-      return accumulator
-    }, [])
-  } else if (Array.isArray(data)) {
-    return data.flatMap(parseStruct)
-  } else {
-    return []
+export const parseStructure = (data: unknown, acc: string[] = []) => {
+  if (Array.isArray(data)) {
+    for (let i = 0; i < data.length; i++) {
+      parseStructure(data[i], acc);
+    }
+    return acc;
   }
-}
+
+  if (typeof data !== 'object' || data === null) {
+    return acc;
+  }
+
+  for (const key in data) {
+    if (key === 'text') {
+      if (typeof data[key] !== 'string') {
+        return acc;
+      }
+      acc.push(data[key]);
+    } else {
+      parseStructure(data[key], acc);
+    }
+  }
+
+  return acc;
+};
+
